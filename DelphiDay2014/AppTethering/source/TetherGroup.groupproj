@@ -1,0 +1,48 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{5F5F90B6-C33C-4B2D-9AB1-D2302A9745C4}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Server\TetherServer.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Desktop\TetherDesktop.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="TetherServer">
+        <MSBuild Projects="Server\TetherServer.dproj"/>
+    </Target>
+    <Target Name="TetherServer:Clean">
+        <MSBuild Projects="Server\TetherServer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TetherServer:Make">
+        <MSBuild Projects="Server\TetherServer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TetherDesktop">
+        <MSBuild Projects="Desktop\TetherDesktop.dproj"/>
+    </Target>
+    <Target Name="TetherDesktop:Clean">
+        <MSBuild Projects="Desktop\TetherDesktop.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TetherDesktop:Make">
+        <MSBuild Projects="Desktop\TetherDesktop.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="TetherServer;TetherDesktop"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="TetherServer:Clean;TetherDesktop:Clean:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="TetherServer:Make;TetherDesktop:Make:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
