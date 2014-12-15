@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Rtti, System.Classes,
   System.Variants, FMX.Types, FMX.Controls, FMX.Forms, FMX.Dialogs,
   FMX.StdCtrls, FMX.Objects, FMX.Edit, FMX.ListBox,
-  REST.Client, REST.Consts, REST.Types;
+  REST.Client, REST.Consts, REST.Types, FMX.Controls.Presentation, FMX.ComboEdit;
 
 type
   Tfrm_CustomHeaderDlg = class(TForm)

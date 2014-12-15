@@ -30,6 +30,7 @@ object dmMain: TdmMain
     ResourceOptions.SilentMode = True
     UpdateOptions.AssignedValues = [uvCheckRequired]
     UpdateOptions.CheckRequired = False
+    AutoCommitUpdates = False
     StoreDefs = True
     Left = 280
     Top = 176
@@ -63,5 +64,19 @@ object dmMain: TdmMain
     TokenType = ttBEARER
     Left = 360
     Top = 112
+  end
+  object RESTResponseHello: TRESTResponse
+    ContentType = 'text/plain'
+    Left = 64
+    Top = 248
+  end
+  object RESTRequestHello: TRESTRequest
+    Client = RESTGitHub
+    Params = <>
+    Resource = 'zen'
+    Response = RESTResponseHello
+    SynchronizedEvents = False
+    Left = 160
+    Top = 256
   end
 end

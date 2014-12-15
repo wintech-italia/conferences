@@ -13,79 +13,82 @@ object frm_CustomHeaderDlg: Tfrm_CustomHeaderDlg
   FormFactor.Devices = [Desktop, iPhone, iPad]
   OnCloseQuery = FormCloseQuery
   OnDeactivate = FormDeactivate
-  DesignerMobile = False
-  DesignerWidth = 0
-  DesignerHeight = 0
-  DesignerDeviceName = ''
-  DesignerOrientation = 0
-  DesignerOSVersion = ''
+  DesignerMasterStyle = 0
   object btn_Cancel: TButton
     Anchors = [akRight, akBottom]
-    Height = 22.000000000000000000
     Position.X = 399.000000000000000000
     Position.Y = 294.000000000000000000
+    Size.Width = 80.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 6
     Text = '&Cancel'
-    Width = 80.000000000000000000
     OnClick = btn_CancelClick
   end
   object btn_Apply: TButton
     Anchors = [akRight, akBottom]
     Default = True
-    Height = 22.000000000000000000
     Position.X = 311.000000000000000000
     Position.Y = 294.000000000000000000
+    Size.Width = 80.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 7
     Text = '&Apply'
-    Width = 80.000000000000000000
     OnClick = btn_ApplyClick
   end
   object Rectangle1: TRectangle
     Align = Top
     Fill.Color = claWhite
-    Height = 81.000000000000000000
+    Size.Width = 487.000000000000000000
+    Size.Height = 81.000000000000000000
+    Size.PlatformDefault = False
     Stroke.Kind = None
-    Width = 487.000000000000000000
   end
   object Line1: TLine
     Anchors = [akLeft, akRight, akBottom]
-    Height = 1.000000000000000000
     LineType = Diagonal
     Position.X = 8.000000000000000000
     Position.Y = 280.000000000000000000
+    Size.Width = 471.000000000000000000
+    Size.Height = 1.000000000000000000
+    Size.PlatformDefault = False
     Stroke.Color = claLightgray
-    Width = 471.000000000000000000
   end
   object lbl_SubTitle: TLabel
-    Height = 17.000000000000000000
     Position.X = 65.000000000000000000
     Position.Y = 48.000000000000000000
+    Size.Width = 353.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
     Text = 'lbl_SubTitle'
-    Width = 353.000000000000000000
   end
   object lbl_MainTitle: TLabel
     StyledSettings = [Family, Style, FontColor]
-    Height = 17.000000000000000000
     Position.X = 64.000000000000000000
     Position.Y = 32.000000000000000000
+    Size.Width = 353.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
     TextSettings.Font.Size = 16.000000000000000000
     Text = 'lbl_MainTitle'
-    Width = 353.000000000000000000
   end
   object cmb_ParameterKind: TComboBox
     DisableFocusEffect = False
-    Height = 22.000000000000000000
     ItemIndex = 0
     Position.X = 64.000000000000000000
     Position.Y = 128.000000000000000000
+    Size.Width = 113.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 0
-    Width = 113.000000000000000000
     OnChange = cmb_ParameterKindChange
     object Label3: TLabel
-      Height = 17.000000000000000000
       Position.Y = -16.000000000000000000
+      Size.Width = 81.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
       Text = 'Kind:'
-      Width = 81.000000000000000000
     end
   end
   object cmb_ParameterName: TComboEdit
@@ -143,14 +146,16 @@ object frm_CustomHeaderDlg: Tfrm_CustomHeaderDlg
     ItemIndex = -1
     Position.X = 184.000000000000000000
     Position.Y = 128.000000000000000000
-    Width = 233.000000000000000000
-    Height = 22.000000000000000000
+    Size.Width = 233.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
     object Label1: TLabel
-      Height = 17.000000000000000000
       Position.X = 1.000000000000000000
       Position.Y = -15.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
       Text = 'Name:'
-      Width = 120.000000000000000000
     end
   end
   object edt_ParameterValue: TEdit
@@ -158,13 +163,15 @@ object frm_CustomHeaderDlg: Tfrm_CustomHeaderDlg
     TabOrder = 2
     Position.X = 64.000000000000000000
     Position.Y = 184.000000000000000000
-    Width = 353.000000000000000000
-    Height = 22.000000000000000000
+    Size.Width = 353.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
     object Label2: TLabel
-      Height = 17.000000000000000000
       Position.Y = -16.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
       Text = 'Value:'
-      Width = 120.000000000000000000
     end
   end
 end

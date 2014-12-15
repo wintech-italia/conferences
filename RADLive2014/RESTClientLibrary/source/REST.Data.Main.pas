@@ -18,6 +18,8 @@ type
     RESTResponseGitHub: TRESTResponse;
     authGitHub: TOAuth2Authenticator;
     OAuth2Authenticator1: TOAuth2Authenticator;
+    RESTResponseHello: TRESTResponse;
+    RESTRequestHello: TRESTRequest;
   private
     function FormatResponse(AResponse: TRESTResponse): string;
   public
@@ -51,12 +53,14 @@ end;
 
 function TdmMain.DoNavigate: string;
 begin
+  RESTAdapterGitHub.Response := RESTResponseGitHub;
   RESTRequestGitHub.Execute;
   Result := FormatResponse(RESTResponseGitHub);
 end;
 
 function TdmMain.DoRequestCustom(AResource: string): string;
 begin
+  RESTAdapterGitHub.Response := RESTResponseGitHub;
   RESTRequestGitHub.Resource := AResource;
   RESTRequestGitHub.Execute;
   Result := FormatResponse(RESTResponseGitHub);
@@ -64,13 +68,15 @@ end;
 
 function TdmMain.DoRequestHello: string;
 begin
-  RESTRequestGitHub.Resource := 'zen';
-  RESTRequestGitHub.Execute;
-  Result := RESTResponseGitHub.Content;
+  RESTRequestHello.Resource := 'zen';
+  RESTRequestHello.Execute;
+  Result := RESTResponseHello.Content;
 end;
 
 function TdmMain.DoRequestUser(AUser: string): string;
 begin
+  RESTAdapterGitHub.Response := RESTResponseGitHub;
+
   RESTRequestGitHub.Resource := 'users/' + AUSer;
   RESTRequestGitHub.Execute;
 

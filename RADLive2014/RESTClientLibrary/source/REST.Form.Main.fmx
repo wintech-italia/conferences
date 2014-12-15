@@ -7,33 +7,32 @@ object frmMain: TfrmMain
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop, iPhone, iPad]
-  DesignerMobile = False
-  DesignerWidth = 0
-  DesignerHeight = 0
-  DesignerDeviceName = ''
-  DesignerOrientation = 0
-  DesignerOSVersion = ''
+  DesignerMasterStyle = 0
   object ctrlResponse: TTabControl
     Align = Client
-    Height = 579.000000000000000000
+    Size.Width = 680.000000000000000000
+    Size.Height = 579.000000000000000000
+    Size.PlatformDefault = False
     TabIndex = 2
     TabOrder = 2
-    Width = 680.000000000000000000
+    TabPosition = Top
     object tabHeaders: TTabItem
       CustomIcon = <
         item
         end>
-      Height = 24.000000000000000000
       IsSelected = False
+      Size.Width = 63.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
       TabOrder = 0
       Text = 'Headers'
-      Width = 61.000000000000000000
       object mmoHeaders: TMemo
         Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
         Align = Client
-        Height = 555.000000000000000000
+        Size.Width = 680.000000000000000000
+        Size.Height = 555.000000000000000000
+        Size.PlatformDefault = False
         TabOrder = 4
-        Width = 680.000000000000000000
         TextSettings.Font.Family = 'Source Code Pro'
         TextSettings.Font.Size = 16.000000000000000000
         StyledSettings = [Style, FontColor]
@@ -43,17 +42,19 @@ object frmMain: TfrmMain
       CustomIcon = <
         item
         end>
-      Height = 24.000000000000000000
       IsSelected = False
+      Size.Width = 63.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
       TabOrder = 0
       Text = 'Content'
-      Width = 59.000000000000000000
       object mmoContent: TMemo
         Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
         Align = Client
-        Height = 555.000000000000000000
+        Size.Width = 680.000000000000000000
+        Size.Height = 555.000000000000000000
+        Size.PlatformDefault = False
         TabOrder = 4
-        Width = 680.000000000000000000
         TextSettings.Font.Family = 'Source Code Pro'
         TextSettings.Font.Size = 16.000000000000000000
         StyledSettings = [Style, FontColor]
@@ -63,16 +64,18 @@ object frmMain: TfrmMain
       CustomIcon = <
         item
         end>
-      Height = 24.000000000000000000
       IsSelected = True
+      Size.Width = 42.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
       TabOrder = 0
       Text = 'Grid'
-      Width = 39.000000000000000000
       object gridResponse: TStringGrid
         Align = Client
-        Height = 555.000000000000000000
+        Size.Width = 680.000000000000000000
+        Size.Height = 555.000000000000000000
+        Size.PlatformDefault = False
         TabOrder = 0
-        Width = 680.000000000000000000
         OnDblClick = gridResponseDblClick
         RowCount = 1
         RowHeight = 21.000000000000000000
@@ -80,53 +83,59 @@ object frmMain: TfrmMain
     end
   end
   object StatusBar1: TStatusBar
-    Height = 22.000000000000000000
     Position.Y = 579.000000000000000000
     ShowSizeGrip = True
-    Width = 929.000000000000000000
+    Size.Width = 929.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 4
   end
   object pnlLeft: TPanel
     Align = Left
-    Height = 579.000000000000000000
-    Width = 249.000000000000000000
+    Size.Width = 249.000000000000000000
+    Size.Height = 579.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 15
     object pnlButtons: TPanel
       Align = Top
-      Height = 137.000000000000000000
-      Width = 249.000000000000000000
+      Size.Width = 249.000000000000000000
+      Size.Height = 137.000000000000000000
+      Size.PlatformDefault = False
       TabOrder = 1
       object btnCustom: TButton
         StyledSettings = [Family, Style, FontColor]
-        Height = 25.000000000000000000
         Position.X = 127.000000000000000000
         Position.Y = 39.000000000000000000
+        Size.Width = 113.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
         TabOrder = 2
         Text = 'Custom Cmd'
         TextSettings.Font.Size = 14.000000000000000000
-        Width = 113.000000000000000000
         OnClick = btnCustomClick
       end
       object btnHelloWorld: TButton
         StyledSettings = [Family, Style, FontColor]
-        Height = 25.000000000000000000
         Position.X = 7.000000000000000000
         Position.Y = 8.000000000000000000
+        Size.Width = 113.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
         TabOrder = 3
         Text = 'Hello World'
         TextSettings.Font.Size = 14.000000000000000000
-        Width = 113.000000000000000000
         OnClick = btnHelloWorldClick
       end
       object btnUser: TButton
         StyledSettings = [Family, Style, FontColor]
-        Height = 25.000000000000000000
         Position.X = 127.000000000000000000
         Position.Y = 8.000000000000000000
+        Size.Width = 113.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
         TabOrder = 4
         Text = 'Get User'
         TextSettings.Font.Size = 14.000000000000000000
-        Width = 113.000000000000000000
         OnClick = btnUserClick
       end
       object Edit1: TEdit
@@ -134,37 +143,41 @@ object frmMain: TfrmMain
         TabOrder = 5
         Position.X = 7.000000000000000000
         Position.Y = 42.000000000000000000
-        Width = 113.000000000000000000
-        Height = 22.000000000000000000
+        Size.Width = 113.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
       end
       object btnNavigate: TButton
         Align = Bottom
         StyledSettings = [Family, Size, FontColor]
-        Height = 33.000000000000000000
         Position.Y = 104.000000000000000000
+        Size.Width = 249.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
         TabOrder = 6
         Text = 'Navigate to'
         TextSettings.Font.Style = [fsBold]
-        Width = 249.000000000000000000
         OnClick = btnNavigateClick
       end
       object btnAuthForm: TButton
         StyledSettings = [Family, Style, FontColor]
-        Height = 25.000000000000000000
         Position.X = 7.000000000000000000
         Position.Y = 71.000000000000000000
+        Size.Width = 113.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
         TabOrder = 1
         Text = 'Auth Form'
         TextSettings.Font.Size = 14.000000000000000000
-        Width = 113.000000000000000000
         OnClick = btnAuthFormClick
       end
     end
     object pnlList: TPanel
       Align = Top
-      Height = 264.000000000000000000
       Position.Y = 137.000000000000000000
-      Width = 249.000000000000000000
+      Size.Width = 249.000000000000000000
+      Size.Height = 264.000000000000000000
+      Size.PlatformDefault = False
       TabOrder = 2
       object listHyperMedia: TListView
         ItemAppearanceClassName = 'TListItemAppearance'
@@ -172,47 +185,52 @@ object frmMain: TfrmMain
         HeaderAppearanceClassName = 'TListHeaderObjects'
         FooterAppearanceClassName = 'TListHeaderObjects'
         Align = Client
-        Height = 231.000000000000000000
+        Size.Width = 249.000000000000000000
+        Size.Height = 231.000000000000000000
+        Size.PlatformDefault = False
         TabOrder = 10
-        Width = 249.000000000000000000
         ItemAppearanceObjects.ItemObjects.Text.Font.Style = [fsBold]
         OnItemClick = listHyperMediaItemClick
       end
       object Label1: TLabel
         Align = Top
         StyledSettings = [Family, FontColor]
-        Height = 33.000000000000000000
+        Size.Width = 249.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
         TextSettings.Font.Size = 20.000000000000000000
         TextSettings.Font.Style = [fsBold]
         TextSettings.HorzAlign = Center
         Text = 'HyperMedia List'
-        Width = 249.000000000000000000
       end
     end
     object pnlParams: TPanel
       Align = Client
-      Height = 178.000000000000000000
-      Width = 249.000000000000000000
+      Size.Width = 249.000000000000000000
+      Size.Height = 178.000000000000000000
+      Size.PlatformDefault = False
       TabOrder = 3
       object Label2: TLabel
         Align = Top
         StyledSettings = [Family, FontColor]
-        Height = 33.000000000000000000
+        Size.Width = 249.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
         TextSettings.Font.Size = 20.000000000000000000
         TextSettings.Font.Style = [fsBold]
         TextSettings.HorzAlign = Center
         Text = 'HyperMedia Params'
-        Width = 249.000000000000000000
       end
       object lblHyperMedia: TLabel
         Align = Top
         StyledSettings = [Family, FontColor]
-        Height = 33.000000000000000000
         Position.Y = 33.000000000000000000
+        Size.Width = 249.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
         TextSettings.Font.Size = 10.000000000000000000
         TextSettings.HorzAlign = Center
         Text = 'URL'
-        Width = 249.000000000000000000
       end
       object listParams: TListView
         ItemAppearanceClassName = 'TListItemAppearance'
@@ -220,9 +238,10 @@ object frmMain: TfrmMain
         HeaderAppearanceClassName = 'TListHeaderObjects'
         FooterAppearanceClassName = 'TListHeaderObjects'
         Align = Client
-        Height = 112.000000000000000000
+        Size.Width = 249.000000000000000000
+        Size.Height = 112.000000000000000000
+        Size.PlatformDefault = False
         TabOrder = 10
-        Width = 249.000000000000000000
         ItemAppearanceObjects.ItemObjects.Text.Font.Style = [fsBold]
       end
     end

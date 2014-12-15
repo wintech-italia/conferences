@@ -8,7 +8,7 @@ uses
   FMX.Edit, FMX.Layouts, FMX.Memo, FMX.TabControl, System.Rtti,
   Data.Bind.EngExt, Fmx.Bind.DBEngExt, Fmx.Bind.Grid, System.Bindings.Outputs,
   Fmx.Bind.Editors, Data.Bind.Components, Data.Bind.Grid, Data.Bind.DBScope,
-  FMX.Grid, FMX.ListView.Types, FMX.ListView, Data.DB;
+  FMX.Grid, FMX.ListView.Types, FMX.ListView, Data.DB, FMX.Controls.Presentation;
 
 type
   TfrmMain = class(TForm)
@@ -111,7 +111,7 @@ end;
 
 procedure TfrmMain.btnUserClick(Sender: TObject);
 begin
-  mmoContent.Lines.Text := dmMain.DoRequestUser('paolo-rossi');
+  mmoContent.Lines.Text := dmMain.DoRequestUser(Edit1.Text);
   mmoHeaders.Lines.Text := dmMain.RESTResponseGitHub.Headers.Text;
   dmMain.dsResponse.Open;
 end;
