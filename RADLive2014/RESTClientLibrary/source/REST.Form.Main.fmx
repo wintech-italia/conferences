@@ -13,19 +13,41 @@ object frmMain: TfrmMain
     Size.Width = 680.000000000000000000
     Size.Height = 579.000000000000000000
     Size.PlatformDefault = False
-    TabIndex = 2
+    TabIndex = 0
     TabOrder = 2
     TabPosition = Top
+    object tabRequest: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = True
+      Size.Width = 110.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Request Headers'
+      object mmoRequestHeaders: TMemo
+        Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+        Align = Client
+        Size.Width = 680.000000000000000000
+        Size.Height = 555.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 4
+        TextSettings.Font.Family = 'Source Code Pro'
+        TextSettings.Font.Size = 16.000000000000000000
+        StyledSettings = [Style, FontColor]
+      end
+    end
     object tabHeaders: TTabItem
       CustomIcon = <
         item
         end>
       IsSelected = False
-      Size.Width = 63.000000000000000000
+      Size.Width = 118.000000000000000000
       Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
-      Text = 'Headers'
+      Text = 'Response Headers'
       object mmoHeaders: TMemo
         Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
         Align = Client
@@ -43,11 +65,11 @@ object frmMain: TfrmMain
         item
         end>
       IsSelected = False
-      Size.Width = 63.000000000000000000
+      Size.Width = 117.000000000000000000
       Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
-      Text = 'Content'
+      Text = 'Response Content'
       object mmoContent: TMemo
         Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
         Align = Client
@@ -64,12 +86,12 @@ object frmMain: TfrmMain
       CustomIcon = <
         item
         end>
-      IsSelected = True
-      Size.Width = 42.000000000000000000
+      IsSelected = False
+      Size.Width = 96.000000000000000000
       Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
-      Text = 'Grid'
+      Text = 'Response Grid'
       object gridResponse: TStringGrid
         Align = Client
         Size.Width = 680.000000000000000000

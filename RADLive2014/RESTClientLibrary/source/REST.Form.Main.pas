@@ -38,6 +38,8 @@ type
     pnlLeft: TPanel;
     btnNavigate: TButton;
     btnAuthForm: TButton;
+    tabRequest: TTabItem;
+    mmoRequestHeaders: TMemo;
     procedure btnHelloWorldClick(Sender: TObject);
     procedure btnUserClick(Sender: TObject);
     procedure btnCustomClick(Sender: TObject);
@@ -113,6 +115,7 @@ procedure TfrmMain.btnUserClick(Sender: TObject);
 begin
   mmoContent.Lines.Text := dmMain.DoRequestUser(Edit1.Text);
   mmoHeaders.Lines.Text := dmMain.RESTResponseGitHub.Headers.Text;
+  mmoRequestHeaders.Lines.Text := dmMain.RESTRequestGitHub;
   dmMain.dsResponse.Open;
 end;
 
