@@ -1,0 +1,117 @@
+object MainForm: TMainForm
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 374
+  ClientWidth = 389
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 3
+  object Layout1: TLayout
+    Align = Top
+    Position.Y = 48.000000000000000000
+    Size.Width = 389.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    object Switch1: TSwitch
+      Align = Center
+      IsChecked = False
+      TabOrder = 0
+      OnSwitch = Switch1Switch
+      object Label2: TLabel
+        AutoSize = True
+        Position.X = -50.000000000000000000
+        Position.Y = 4.000000000000000000
+        Size.Width = 50.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.WordWrap = False
+        Text = 'Scan:'
+      end
+    end
+  end
+  object ToolBar1: TToolBar
+    Size.Width = 389.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 5
+    object Label1: TLabel
+      Align = Center
+      AutoSize = True
+      Size.Width = 97.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.WordWrap = False
+      Text = 'BeaconList'
+    end
+  end
+  object Layout2: TLayout
+    Align = Client
+    Size.Width = 389.000000000000000000
+    Size.Height = 276.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 6
+    object LabelBeacons: TLabel
+      Align = Top
+      AutoSize = True
+      StyledSettings = [Family, Size, FontColor]
+      Margins.Top = 3.000000000000000000
+      Margins.Bottom = 3.000000000000000000
+      Position.Y = 3.000000000000000000
+      Size.Width = 389.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Style = [fsBold]
+      TextSettings.HorzAlign = Center
+      TextSettings.WordWrap = False
+      Text = 'Beacons'
+    end
+    object ListBox1: TListBox
+      Align = Client
+      Size.Width = 389.000000000000000000
+      Size.Height = 220.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      DisableFocusEffect = True
+      ItemHeight = 44.000000000000000000
+      DefaultItemStyles.ItemStyle = 'listboxitemleftdetail'
+      DefaultItemStyles.GroupHeaderStyle = ''
+      DefaultItemStyles.GroupFooterStyle = ''
+      Viewport.Width = 389.000000000000000000
+      Viewport.Height = 220.000000000000000000
+    end
+    object LabelLastUpdate: TLabel
+      Align = Bottom
+      AutoSize = True
+      StyledSettings = [Family, Size, FontColor]
+      Margins.Top = 3.000000000000000000
+      Margins.Bottom = 3.000000000000000000
+      Position.Y = 251.000000000000000000
+      Size.Width = 389.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Style = [fsBold]
+      TextSettings.HorzAlign = Center
+      TextSettings.WordWrap = False
+      Text = 'Beacons'
+    end
+  end
+  object Timer1: TTimer
+    Enabled = False
+    OnTimer = Timer1Timer
+    Left = 224
+    Top = 136
+  end
+  object Beacon1: TBeacon
+    Enabled = True
+    MonitorizedRegions = <
+      item
+        UUID = '{B9407F30-F5F8-466E-AFF9-25556B57FE6D}'
+      end>
+    SPC = 0.500000000000000000
+    Left = 224
+    Top = 72
+  end
+end
