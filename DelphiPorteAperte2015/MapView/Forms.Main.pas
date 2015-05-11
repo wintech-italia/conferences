@@ -24,61 +24,80 @@ type
     TabControlMain: TTabControl;
     TabItemMap: TTabItem;
     TabItemList: TTabItem;
-    Layout2: TLayout;
-    LabelClick: TLabel;
     ActionListMain: TActionList;
     ActionPartecipanti: TAction;
     ActionVicinanza: TAction;
     ActionWintech: TAction;
     ImageListMain: TImageList;
-    Layout1: TLayout;
-    Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
     BindingsList1: TBindingsList;
     ListViewPartecipanti: TListView;
     Memo1: TMemo;
     BindSourceDB1: TBindSourceDB;
     LinkListControlToField1: TLinkListControlToField;
-    Layout3: TLayout;
-    ButtonIbr: TButton;
-    ButtonMap: TButton;
-    ButtonSat: TButton;
-    Panel1: TPanel;
+    MultiViewMain: TMultiView;
+    ActionMapSatellite: TAction;
+    ActionMapIbrida: TAction;
+    ActionMapNormal: TAction;
+    Image2: TImage;
+    ListBoxMenu: TListBox;
+    lbiVicinanze: TListBoxItem;
+    ListBoxItem3: TListBoxItem;
+    ListBoxItem4: TListBoxItem;
+    ListBoxItem5: TListBoxItem;
+    ListBoxItem6: TListBoxItem;
+    ListBoxGroupHeader1: TListBoxGroupHeader;
+    ListBoxGroupHeader2: TListBoxGroupHeader;
+    ToolBar1: TToolBar;
+    Button1: TButton;
+    Label1: TLabel;
+    TrackBarVicinanze: TTrackBar;
+    Button2: TButton;
     procedure FormCreate(Sender: TObject);
-    procedure MapViewMapClick(const Position: TMapCoordinate);
     procedure ActionPartecipantiExecute(Sender: TObject);
     procedure ActionVicinanzaExecute(Sender: TObject);
     procedure ActionWintechExecute(Sender: TObject);
     procedure ListBoxItem1Click(Sender: TObject);
-    procedure ListBoxItem2Click(Sender: TObject);
+    procedure lbiVicinanzeClick(Sender: TObject);
     procedure ListBoxItem3Click(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure ListViewPartecipantiItemClick(const Sender: TObject;
       const AItem: TListViewItem);
-    procedure ButtonSatClick(Sender: TObject);
-    procedure ButtonMapClick(Sender: TObject);
-    procedure ButtonIbrClick(Sender: TObject);
     procedure MapViewMarkerClick(Marker: TMapMarker);
+    procedure ActionMapSatelliteExecute(Sender: TObject);
+    procedure ActionMapNormalExecute(Sender: TObject);
+    procedure ActionMapIbridaExecute(Sender: TObject);
+    procedure ListBoxItem4Click(Sender: TObject);
+    procedure ListBoxItem5Click(Sender: TObject);
+    procedure ListBoxItem6Click(Sender: TObject);
+    procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
+      Shift: TShiftState);
+    procedure Button1Click(Sender: TObject);
+    procedure TrackBarVicinanzeChange(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     FSheratonCoord: TLocationCoord2D;
     FWintechCoord: TLocationCoord2D;
-    FWintechMarker: TMapMarker;
+    FMarkerWintech: TMapMarker;
 
     FMarkersDictionary: TDictionary<string, TMapMarker>;
+    FCircleVicinanze: TMapCircle;
+    procedure SetRaggioVicinanze(const Value: Integer);
 
     function AddMarker(ALocation: TMapCoordinate; AName: string;
       ASnippet: string = ''; ABeforeAdd: TVarProc<TMapMarkerDescriptor> = nil): TMapMarker; overload;
     procedure AddMarker(AIndirizzo: string; AName: string;
       ASnippet: string = ''; ABeforeAdd: TVarProc<TMapMarkerDescriptor> = nil); overload;
 
-    procedure LoadDataSet;
     procedure ClearMarkers;
 
     procedure SetMapLocation(ALocation: TLocationCoord2D);
-    procedure EvidenziaVicinanze(ACoord: TLocationCoord2D; ARaggioKM: Integer);
+    function EvidenziaVicinanze(ACoord: TLocationCoord2D; ARaggioKM: Integer): TMapCircle;
     procedure AggiungiMarkerWintech;
+    procedure SetCircleVicinanze(const Value: TMapCircle);
+    function GetRaggioVicinanze: Integer;
   public
+    property RaggioVicinanze: Integer read GetRaggioVicinanze write SetRaggioVicinanze;
+    property CircleVicinanze: TMapCircle read FCircleVicinanze write SetCircleVicinanze;
   end;
 
 var
@@ -108,7 +127,7 @@ begin
   Result := MapView.AddMarker(LDescriptor);
 end;
 
-procedure TMainForm.EvidenziaVicinanze(ACoord: TLocationCoord2D; ARaggioKM: Integer);
+function TMainForm.EvidenziaVicinanze(ACoord: TLocationCoord2D; ARaggioKM: Integer): TMapCircle;
 var
   LMapCircle: TMapCircleDescriptor;
 begin
@@ -121,7 +140,22 @@ begin
   LMapCircle.StrokeWidth := 1;
   LMapCircle.StrokeColor := TAlphaColorRec.Red;
 
-  MapView.AddCircle(LMapCircle);
+  Result := MapView.AddCircle(LMapCircle);
+end;
+
+procedure TMainForm.ActionMapIbridaExecute(Sender: TObject);
+begin
+  MapView.MapType := TMapType.Hybrid;
+end;
+
+procedure TMainForm.ActionMapNormalExecute(Sender: TObject);
+begin
+  MapView.MapType := TMapType.Normal;
+end;
+
+procedure TMainForm.ActionMapSatelliteExecute(Sender: TObject);
+begin
+  MapView.MapType := TMapType.Satellite;
 end;
 
 procedure TMainForm.ActionPartecipantiExecute(Sender: TObject);
@@ -156,13 +190,13 @@ end;
 
 procedure TMainForm.ActionVicinanzaExecute(Sender: TObject);
 begin
-  EvidenziaVicinanze(FSheratonCoord, 100);
+  CircleVicinanze := EvidenziaVicinanze(FSheratonCoord, RaggioVicinanze);
   SetMapLocation(FSheratonCoord);
 end;
 
 procedure TMainForm.ActionWintechExecute(Sender: TObject);
 begin
-  if not Assigned(FWintechMarker) then
+  if not Assigned(FMarkerWintech) then
     AggiungiMarkerWintech;
   SetMapLocation(FWintechCoord);
 end;
@@ -193,7 +227,7 @@ end;
 
 procedure TMainForm.AggiungiMarkerWintech;
 begin
-  FWintechMarker := AddMarker(TMapCoordinate.Create(FWintechCoord.Latitude, FWintechCoord.Longitude), 'Wintech-Italia s.r.l.', 'www.wintech-italia.it',
+  FMarkerWintech := AddMarker(TMapCoordinate.Create(FWintechCoord.Latitude, FWintechCoord.Longitude), 'Wintech-Italia s.r.l.', 'www.wintech-italia.it',
     procedure(var ADescriptor: TMapMarkerDescriptor)
     begin
 {$IFDEF ANDROID}
@@ -204,19 +238,9 @@ begin
   );
 end;
 
-procedure TMainForm.ButtonIbrClick(Sender: TObject);
+procedure TMainForm.Button1Click(Sender: TObject);
 begin
-  MapView.MapType := TMapType.Hybrid;
-end;
-
-procedure TMainForm.ButtonMapClick(Sender: TObject);
-begin
-  MapView.MapType := TMapType.Normal;
-end;
-
-procedure TMainForm.ButtonSatClick(Sender: TObject);
-begin
-  MapView.MapType := TMapType.Satellite;
+  MultiViewMain.Visible := not MultiViewMain.Visible;
 end;
 
 procedure TMainForm.ClearMarkers;
@@ -232,6 +256,7 @@ end;
 
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
+  TabControlMain.ActiveTab := TabItemMap;
   FMarkersDictionary := TDictionary<string, TMapMarker>.Create;
 
   FSheratonCoord.Latitude := 45.416142;
@@ -241,8 +266,6 @@ begin
   FWintechCoord.Longitude := 10.330826;
 
   SetMapLocation(FSheratonCoord);
-
-  LoadDataSet;
 end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
@@ -250,22 +273,63 @@ begin
   FMarkersDictionary.Free;
 end;
 
-procedure TMainForm.ListBoxItem1Click(Sender: TObject);
+procedure TMainForm.FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
+  Shift: TShiftState);
 begin
-  if ActionPartecipanti.Update then
-    ActionPartecipanti.Execute;
+  if Key = vkMenu then
+    MultiViewMain.Visible := not   MultiViewMain.Visible;
 end;
 
-procedure TMainForm.ListBoxItem2Click(Sender: TObject);
+procedure TMainForm.FormShow(Sender: TObject);
 begin
-  if ActionVicinanza.Update then
-    ActionVicinanza.Execute;
+  MultiViewMain.Visible := False;
+end;
+
+function TMainForm.GetRaggioVicinanze: Integer;
+begin
+  Result := Trunc(TrackBarVicinanze.Value);
+end;
+
+procedure TMainForm.ListBoxItem1Click(Sender: TObject);
+begin
+  MultiViewMain.HideMaster;
+
+  ActionPartecipanti.Execute;
+end;
+
+procedure TMainForm.lbiVicinanzeClick(Sender: TObject);
+begin
+  MultiViewMain.Visible := False;
+
+  ActionVicinanza.Execute;
 end;
 
 procedure TMainForm.ListBoxItem3Click(Sender: TObject);
 begin
-  if ActionWintech.Update then
-    ActionWintech.Execute;
+  MultiViewMain.Visible := False;
+
+  ActionWintech.Execute;
+end;
+
+procedure TMainForm.ListBoxItem4Click(Sender: TObject);
+begin
+  MultiViewMain.Visible := False;
+
+  ActionMapNormal.Execute;
+end;
+
+procedure TMainForm.ListBoxItem5Click(Sender: TObject);
+begin
+  MultiViewMain.Visible := False;
+
+  ActionMapSatellite.Execute;
+end;
+
+procedure TMainForm.ListBoxItem6Click(Sender: TObject);
+begin
+  MultiViewMain.Visible := False;
+
+  ActionMapIbrida.Execute;
 end;
 
 procedure TMainForm.ListViewPartecipantiItemClick(const Sender: TObject;
@@ -280,43 +344,36 @@ begin
   end;
 end;
 
-procedure TMainForm.LoadDataSet;
-var
-  LIndex: Integer;
-  LDataSet: TFDMemTable;
-  LCitta: string;
-  LPartecipanti: Integer;
-begin
-  LDataSet := MainData.PartecipantiDataSet;
-  LDataSet.DisableControls;
-  try
-    LDataSet.Active := False;
-    LDataSet.Active := True;
-    for LIndex := 0 to Memo1.Lines.Count-1 do
-    begin
-      LCitta := Memo1.Lines.Names[LIndex];
-      LPartecipanti := StrToIntDef(Memo1.Lines.ValueFromIndex[LIndex], 0);
-      if (LCitta <> '') and (LPartecipanti > 0) then
-        LDataSet.AppendRecord([LCitta, LPartecipanti]);
-    end;
-  finally
-    LDataSet.EnableControls;
-  end;
-end;
-
-procedure TMainForm.MapViewMapClick(const Position: TMapCoordinate);
-begin
-  LabelClick.Text := Position.ToString;
-end;
-
 procedure TMainForm.MapViewMarkerClick(Marker: TMapMarker);
 begin
   MainData.PartecipantiDataSet.Locate('Citta', Marker.Descriptor.Title);
 end;
 
+procedure TMainForm.SetCircleVicinanze(const Value: TMapCircle);
+begin
+  if Assigned(FCircleVicinanze) then
+  begin
+    FCircleVicinanze.Remove;
+    FreeAndNil(FCircleVicinanze);
+  end;
+
+  FCircleVicinanze := Value;
+end;
+
 procedure TMainForm.SetMapLocation(ALocation: TLocationCoord2D);
 begin
   MapView.Location := TMapCoordinate.Create(ALocation.Latitude, ALocation.Longitude);
+end;
+
+procedure TMainForm.SetRaggioVicinanze(const Value: Integer);
+begin
+  TrackBarVicinanze.Value := Value;
+  lbiVicinanze.Text := Trunc(TrackBarVicinanze.Value).ToString + 'km';
+end;
+
+procedure TMainForm.TrackBarVicinanzeChange(Sender: TObject);
+begin
+  RaggioVicinanze := Trunc(TrackBarVicinanze.Value);
 end;
 
 end.

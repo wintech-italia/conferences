@@ -158,6 +158,14 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="Z:\DelphiPorteAperte2015\MapView\Android\Debug\classes.dex" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MapViewProject\classes\</RemoteDir>
+            <RemoteName>classes.dex</RemoteName>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
     </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='Win32'">
         <DeployFile Include="Win32\Debug\MapViewProject.exe" Condition="'$(Config)'=='Debug'">

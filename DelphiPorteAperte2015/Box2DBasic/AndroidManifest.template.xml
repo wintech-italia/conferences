@@ -18,8 +18,7 @@
         android:icon="%icon%"
         android:theme="%theme%"
         android:hardwareAccelerated="%hardwareAccelerated%">
-        <meta-data android:name="com.google.android.gms.version" android:value="4323000" />
-        <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="YOUR_GOOGLE_API_KEY"/>
+
 <%application-meta-data%>
         <!-- Our activity is a subclass of the built-in NativeActivity framework class.
              This will take care of integrating with our NDK code. -->

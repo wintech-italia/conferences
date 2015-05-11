@@ -1,5 +1,5 @@
 ﻿[]
-Coordinates=73,197,64,51
+Coordinates=210,197,53,33
 Visible=True
 LayerNames=
 
@@ -26,12 +26,6 @@ Visible=False
 Coordinates=599,120,160,33
 Visible=False
 
-[Layout2]
-Coordinates=210,197,53,33
-
-[LabelClick]
-Coordinates=195,10,65,51
-
 [ActionPartecipanti]
 Coordinates=463,162,105,33
 
@@ -44,20 +38,8 @@ Coordinates=462,266,86,33
 [ActionListMain]
 Coordinates=462,318,88,33
 
-[Layout1]
-Coordinates=147,197,53,33
-
-[Button3]
-Coordinates=270,10,53,51
-
-[Button2]
-Coordinates=10,197,53,51
-
 [ImageListMain]
 Coordinates=278,53,85,33
-
-[Button1]
-Coordinates=333,10,53,51
 
 [Module Settings]
 ModelLayerNames=
